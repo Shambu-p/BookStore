@@ -1,0 +1,32 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>Servlet</servlet-name>
+    <servlet-class>com.BookStore.Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Assets</servlet-name>
+    <servlet-class>com.BookStore.AssetsManager.Assets</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FileAssets</servlet-name>
+    <servlet-class>com.BookStore.AssetsManager.FileAssets</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Servlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Assets</servlet-name>
+    <url-pattern>/assets</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FileAssets</servlet-name>
+    <url-pattern>/image_assets</url-pattern>
+  </servlet-mapping>
+</web-app>
