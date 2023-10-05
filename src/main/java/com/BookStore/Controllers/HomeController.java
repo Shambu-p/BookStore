@@ -34,19 +34,15 @@ public class HomeController extends HttpServlet {
 		// 	request.getRequestDispatcher("error.jsp").forward(request, response);
 		// }
 
-        Database db = new Database();
+        // Database db = new Database();
         
         try{
-            // Connection con = db.getConnection();
-            // PrintWriter out = response.getWriter();
-            // out.println("connected");
-            String[] temp = new String[2];
-            temp[0] = "connected";
-            temp[1] = "not connected";
+            ArrayList<String> temp = new ArrayList<String>();
+            temp.add("connected");
+            temp.add("not connected");
+            request.setAttribute("isthere_alert", temp);
             request.setAttribute("alerts", temp);
-            // request.getAttribute()
             request.getRequestDispatcher("list.jsp").forward(request, response);
-            // con.close();
         } catch(Exception ex){
             ex.printStackTrace();
             // request.setAttribute("message", ex.getMessage());
