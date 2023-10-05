@@ -8,12 +8,13 @@ public class FileAssets extends HttpServlet {
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int BUFF_SIZE = 1024;
-        String home_address = "/home/abnet/Documents/Projects/BookStore/demo/";
-        byte[] buffer = new byte[BUFF_SIZE];
+        // int BUFF_SIZE = 1024;
+        // String home_address = "/home/abnet/Documents/Projects/BookStore/demo/";
+        String home_address = "C:\\Projects\\BookStore\\";
+        // byte[] buffer = new byte[BUFF_SIZE];
         String asset_type = request.getParameter("type");
         String asset_name = request.getParameter("name");
-        File fileMp3 = new File(home_address + "/src/main/webapp/assets/" + asset_name);
+        File fileMp3 = new File(home_address + "\\src\\main\\webapp\\assets\\" + asset_name);
 
         // response.setHeader("Content-Disposition", "filename=\"hoge.txt\"");
         // BufferedReader br = new BufferedReader(fileMp3);

@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book-Store-Home</title>
     <link rel="stylesheet" href="/demo/assets?type=css&name=bootstrap5.3.min.css">
+    <link rel="stylesheet" href="/demo/assets?type=css&name=fontawesome.css">
+    <link rel="stylesheet" href="/demo/assets?type=css&name=brands.css">
+    <link rel="stylesheet" href="/demo/assets?type=css&name=solid.css">
     <link rel="stylesheet" href="/demo/assets?type=css&name=my_style.css">
 </head>
 
@@ -32,6 +35,7 @@
                     <span class="hero-brand">BOOKS</span>
                     <div class="search-container d-flex">
                         <div class="search-input-container d-flex">
+                            <i class="fa fa-magnifying-glass" style="font-size: 15px;"></i>
                             <input type="text" class="search-input" placeholder="Search" />
                             <select name="Categories" id="book_search_category">
                                 <option value="">All Category</option>
