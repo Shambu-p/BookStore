@@ -12,7 +12,7 @@ public class Database {
 		
 		if(Database.connection == null) {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Database.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/book_store","root" ,"");
+			Database.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/book_store","root" ,"password123?");
 		}
 		
 		return connection;
