@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+pageEncoding="ISO-8859-1" isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,8 +20,8 @@
     <div class="w-100">
         <div class="container d-flex p-1 justify-content-between">
             <div class="navbar_left w-50 d-flex justify-content-start">
-                <span class="logged_in_user">Abnet</span>
-                <span class="logout_action">Logout</span>
+                <span class="logged_in_user pe-2 border-right">${user.Name}</span>
+                <span class="logout_action pe-2">Logout</span>
             </div>
             <div class="navbar_right w-50 d-flex justify-content-end">
                 <button class="sy-btn btn btn-sm btn-dark">Publish</button>

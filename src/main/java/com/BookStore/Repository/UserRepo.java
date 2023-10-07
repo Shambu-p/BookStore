@@ -19,7 +19,7 @@ public class UserRepo {
 	
 	public User login(String email, String password) throws SQLException, BSNotFound {
 
-		String query = "select * from signup where uemail = ?";
+		String query = "select * from Users where uemail = ?";
 		User found_user = new User();
 		
 		PreparedStatement pst = this.Database.prepareStatement(query);
@@ -45,11 +45,12 @@ public class UserRepo {
 	
 	public boolean addUser(User temp_user) throws SQLException {
 		
-		PreparedStatement pst = this.Database.prepareStatement("insert into signup(uname, upwd, uemail, umobile) values(?,?,?,?)");
+		PreparedStatement pst = this.Database.prepareStatement("insert into Users(uname, upwd, uemail, umobile, role) values(?,?,?,?,?)");
 		pst.setString(1, temp_user.Name);
 		pst.setString(2, temp_user.Password);
 		pst.setString(3, temp_user.Email);
 		pst.setString(4, temp_user.Mobile);
+		pst.setString(5, temp_user.Role);
 		
 		return pst.executeUpdate() > 0;
 		
@@ -57,7 +58,7 @@ public class UserRepo {
 	
 	public boolean updateUser(User user) throws SQLException {
 		
-		PreparedStatement pst = this.Database.prepareStatement("update signup "
+		PreparedStatement pst = this.Database.prepareStatement("update Users "
 				+ "set uname = ?, uemail = ?, umobile = ?"
 				+ "where id = ?");
 		pst.setString(1, user.Name);
@@ -71,7 +72,7 @@ public class UserRepo {
 	
 	public ArrayList<User> getUsers(String name, String email, String mobile) throws SQLException {
 		
-		String query = "select * from signup ";
+		String query = "select * from Users ";
 		ArrayList<User> users = new ArrayList<User>();
 		
 		if(!name.equals("")) {
@@ -107,7 +108,7 @@ public class UserRepo {
 	
 	public User getUser(int id) throws SQLException, BSNotFound {
 		
-		String query = "select * from signup where id = ?";
+		String query = "select * from Users where id = ?";
 		PreparedStatement pst = this.Database.prepareStatement(query);
 		pst.setInt(1, id);
 		
@@ -128,7 +129,7 @@ public class UserRepo {
 		
 	}
 	
-	public User authenticatedUser(Cookie[] cookies) throws Exception {
+	public User authenticatedUser(Cookie[] cookies) throws BSNotAuthenticated, NumberFormatException, SQLException, BSNotFound {
 		
 		for(Cookie cookie : cookies) {
 			if("user".equals(cookie.getName())) {

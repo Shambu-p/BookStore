@@ -16,14 +16,6 @@
     <servlet-name>FileAssets</servlet-name>
     <servlet-class>com.BookStore.AssetsManager.FileAssets</servlet-class>
   </servlet>
-  <servlet>
-    <servlet-name>HomeController</servlet-name>
-    <servlet-class>com.BookStore.Controllers.HomeController</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>AuthController</servlet-name>
-    <servlet-class>com.BookStore.Controllers.AuthController</servlet-class>
-  </servlet>
 
   <servlet-mapping>
     <servlet-name>Servlet</servlet-name>
