@@ -17,10 +17,10 @@
     <servlet-class>com.BookStore.AssetsManager.FileAssets</servlet-class>
   </servlet>
 
-  <servlet-mapping>
+  <!-- <servlet-mapping>
     <servlet-name>Servlet</servlet-name>
     <url-pattern>/</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> 
   <servlet-mapping>
     <servlet-name>Assets</servlet-name>
     <url-pattern>/assets</url-pattern>
@@ -29,5 +29,6 @@
     <servlet-name>FileAssets</servlet-name>
     <url-pattern>/image_assets</url-pattern>
   </servlet-mapping>
+-->
 
 </web-app>

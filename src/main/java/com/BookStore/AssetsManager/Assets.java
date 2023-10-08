@@ -4,8 +4,10 @@ import java.io.*;
 import java.nio.charset.Charset;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+@WebServlet("/assets")
 public class Assets extends HttpServlet {
 
     @Override

@@ -34,6 +34,7 @@ public class UserRepo {
 				found_user.Email = rs.getString("uemail");
 				found_user.Password = rs.getString("upwd");
 				found_user.Mobile = rs.getString("umobile");
+				found_user.Role = rs.getString("role");
 				return found_user;
 				
 			}
@@ -98,6 +99,7 @@ public class UserRepo {
 			found_user.Email = rs.getString("email");
 			found_user.Password = rs.getString("upwd");
 			found_user.Mobile= rs.getString("umobile");
+			found_user.Role = rs.getString("role");
 			users.add(found_user);
 			
 		}
@@ -124,6 +126,7 @@ public class UserRepo {
 		found_user.Email = rs.getString("uemail");
 		found_user.Password = rs.getString("upwd");
 		found_user.Mobile= rs.getString("umobile");
+		found_user.Role = rs.getString("role");
 
 		return found_user;
 		
@@ -132,7 +135,7 @@ public class UserRepo {
 	public User authenticatedUser(Cookie[] cookies) throws BSNotAuthenticated, NumberFormatException, SQLException, BSNotFound {
 		
 		for(Cookie cookie : cookies) {
-			if("user".equals(cookie.getName())) {
+			if(cookie.getName().equals("user")) {
 				return this.getUser(Integer.parseInt(cookie.getValue()));
 			}
 		}

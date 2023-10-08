@@ -14,7 +14,7 @@ public class BookRepo {
 	
 	public Boolean addBook(Book new_book) throws SQLException {
 		
-		String query = "insert into booklist (Author, Bname, Btype, Bprice, a_quantity, user_id, description) values (?,?,?,?,?,?,?)";
+		String query = "insert into booklist (Author, Bname, Btype, Bprice, a_quantity, user_id, description, cover) values (?,?,?,?,?,?,?,?)";
 		PreparedStatement pst = this.Database.prepareStatement(query);
 		pst.setString(1, new_book.Author);
 		pst.setString(2, new_book.Name);
@@ -23,6 +23,7 @@ public class BookRepo {
 		pst.setInt(5, new_book.Quantity);
 		pst.setInt(6, new_book.UserId);
 		pst.setString(7, new_book.Description);
+		pst.setString(8, new_book.Cover);
 		
 		return pst.executeUpdate() > 0;
 
@@ -60,6 +61,7 @@ public class BookRepo {
 			found_book.Quantity = rs.getInt("a_quantity");
 			found_book.UserId = rs.getInt("user_id");
 			found_book.Description = rs.getString("description");
+			found_book.Cover = rs.getString("cover");
 			books.add(found_book);
 
 		}
@@ -89,6 +91,7 @@ public class BookRepo {
 			found_book.Quantity = rs.getInt("a_quantity");
 			found_book.UserId = rs.getInt("user_id");
 			found_book.Description = rs.getString("description");
+			found_book.Cover = rs.getString("cover");
 			books.add(found_book);
 			
 		}

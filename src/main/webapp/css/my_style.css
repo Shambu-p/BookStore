@@ -78,3 +78,29 @@ body {
 .btn-search {
     border-radius: 10px;
 }
+
+.logged_in_user {
+    border-right: 2px solid black;
+}
+
+.logged_in_user, .logout_action {
+    background: transparent;
+    font-family: sans-serif;
+    color: black;
+    padding: 0 15px;
+    text-decoration: none;
+    position: relative;
+}
+
+.book_image_container {
+    /* background: red; */
+    width: 100%;
+    height: 310px;
+    /* height: max-content; */
+    overflow: hidden;
+    position: relative;
+}
+
+.book_image_container img {
+    width: 100%;
+}

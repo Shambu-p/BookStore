@@ -36,42 +36,21 @@ public class AuthController extends HttpServlet {
             request.getServletContext().getRequestDispatcher("/login_form.jsp").forward(request, response);
         }
 
-        // User authUser =
-        // com.BookStore.MiddleWare.Authetication.isAuthenticated(request, response,
-        // null);
-        // if (authUser != null) {
-        // request.setAttribute("user", authUser);
-        // request.getServletContext().getRequestDispatcher("/").forward(request,
-        // response);
-        // //
-        // request.getRequestDispatcher("http://localhost:8080/demo").forward(request,
-        // // response);
-        // }
-
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-        // request.setAttribute("message", "working");
-        // request.getServletContext().getRequestDispatcher("/error.jsp").forward(request,
-        // response);
-
-        // User user = repo.authenticatedUser(request.getCookies());
-
-        // if (user != null) {
-        // request.setAttribute("user", user);
-        // request.getServletContext().getRequestDispatcher("/").forward(request,
-        // response);
-        // return;
-        // }
 
         try {
 
             UserRepo repo = new UserRepo();
 
             User user = repo.login(request.getParameter("email"), request.getParameter("password"));
-            response.addCookie(new Cookie("user", String.valueOf(user.Id)));
+            Cookie ck = new Cookie("user", String.valueOf(user.Id));
+            ck.setPath("/");
+            ck.setMaxAge(4 * 24 * 3600);
+            // ck.setDomain(request.);
+            response.addCookie(ck);
 
             request.setAttribute("user", user);
             request.getServletContext().getRequestDispatcher("/home").forward(request, response);

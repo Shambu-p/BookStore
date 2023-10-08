@@ -23,18 +23,14 @@ public class Authetication {
             if(roles != null && !roles.contains(user.Role)) {
                 request.setAttribute("message", "User is not authorized for this operation!");
                 request.getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
-                // request.getRequestDispatcher("http://localhost:8080/demo/error.jsp").forward(request, response);
                 return null;
             }
 
             return user;
-            // request.setAttribute("user", user);
-            // request.getRequestDispatcher(path).forward(request, response);
-            // response.sendRedirect("/");
+
 		} catch (BSNotAuthenticated ex) {
             request.setAttribute("error_alert", ex.getMessage());
 			request.getServletContext().getRequestDispatcher("/login_form.jsp").forward(request, response);
-			// request.getRequestDispatcher("http://localhost:8080/demo/login_form.jsp").forward(request, response);
 		} catch (Exception ex) {
             request.setAttribute("message", ex.getMessage());
 			request.getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);

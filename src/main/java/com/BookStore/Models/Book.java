@@ -9,5 +9,6 @@ public class Book {
 	public double Price;
 	public int Quantity;
 	public String Description;
+	public String Cover;
 	public int UserId;
 }

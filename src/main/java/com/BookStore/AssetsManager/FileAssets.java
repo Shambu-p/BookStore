@@ -2,8 +2,10 @@ package com.BookStore.AssetsManager;
 
 import java.io.*;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+@WebServlet("/image_assets")
 public class FileAssets extends HttpServlet {
     
     @Override
@@ -14,13 +16,13 @@ public class FileAssets extends HttpServlet {
         // byte[] buffer = new byte[BUFF_SIZE];
         String asset_type = request.getParameter("type");
         String asset_name = request.getParameter("name");
-        File fileMp3 = new File(home_address + "/src/main/webapp/assets/" + asset_name);
+        File fileMp3 = new File(home_address + ((!asset_type.equals("cover")) ? "/src/main/webapp/assets/" : "/src/main/resources/book_covers/") + asset_name);
         // File fileMp3 = new File(home_address + "\\src\\main\\webapp\\assets\\" + asset_name);
 
         // response.setHeader("Content-Disposition", "filename=\"hoge.txt\"");
         // BufferedReader br = new BufferedReader(fileMp3);
         response.setContentLength((int) fileMp3.length());
-        response.setContentType("image/"+asset_type);
+        response.setContentType("image/"+(asset_type.equals("cover") ? "png" : asset_type));
         OutputStream os = response.getOutputStream();
         FileInputStream fis = new FileInputStream(fileMp3);
         
