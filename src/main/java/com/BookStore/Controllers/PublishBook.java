@@ -59,11 +59,13 @@ public class PublishBook extends HttpServlet {
 
             // Get the file name.
             // String fileName = filePart.getSubmittedFileName();
-            String[] name_splite = filePart.getSubmittedFileName().split(".");
-            new_book.Cover = "bk_" + new_book.Name;
+            // String[] name_splite = filePart.getSubmittedFileName().split(".");
+            new_book.Cover = "bk_" + new_book.Name.trim();
             // Create a path to the save location.
-            String home_address = "/home/abnet/Documents/Projects/BookStore/demo/";
-            Path savePath = Paths.get(home_address + "/src/main/resources/book_covers", new_book.Cover);
+            String home_address = "C:\\Projects\\BookStore";
+            // String home_address = "/home/abnet/Documents/Projects/BookStore/demo/";
+            // Path savePath = Paths.get(home_address + "/src/main/resources/book_covers", new_book.Cover);
+            Path savePath = Paths.get(home_address + "\\src\\main\\resources\\book_covers", new_book.Cover);
 
             // Save the file.
             InputStream inputStream = filePart.getInputStream();

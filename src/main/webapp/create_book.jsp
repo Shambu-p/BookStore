@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="/demo/assets?type=css&name=solid.css">
         <link rel="stylesheet" href="/demo/assets?type=css&name=my_style.css">
     </head>
+
     <% User nuser = (User) request.getAttribute("user"); %>
 
     <body>
@@ -29,20 +30,20 @@
                 <% if(nuser.isAdminUser()) { %>
                     <div class="navbar_right w-50 d-flex justify-content-end">
                         <a href="/demo/home" class="sy-btn btn btn-sm btn-dark">Home</a>
-                        <a href="/demo/authors" class="sy-btn btn btn-sm btn-dark">Authors</a>
+                        <a href="/demo/authors" class="sy-btn btn btn-sm btn-dark ms-2">Authors</a>
                         <a href="/demo/books" class="sy-btn btn btn-sm btn-dark ms-2">Books</a>
-                        <a href="/demo/users" class="sy-btn btn btn-sm btn-dark ms-2">Books</a>
+                        <a href="/demo/users" class="sy-btn btn btn-sm btn-dark ms-2">Users</a>
                     </div>
                 <% } else if(nuser.Role.equals("author")) { %>
                     <div class="navbar_right w-50 d-flex justify-content-end">
                         <a href="/demo/home" class="sy-btn btn btn-sm btn-dark">Home</a>
-                        <a href="/demo/books/publish" class="sy-btn btn btn-sm btn-dark">Publish Book</a>
+                        <a href="/demo/books/publish" class="sy-btn btn btn-sm btn-dark ms-2">Publish Book</a>
                         <a href="/demo/my_books" class="sy-btn btn btn-sm btn-dark ms-2">My Books</a>
                     </div>
                 <% } else if(nuser.Role.equals("user")) { %>
                     <div class="navbar_right w-50 d-flex justify-content-end">
                         <a href="/demo/home" class="sy-btn btn btn-sm btn-dark">Home</a>
-                        <a href="/demo/books" class="sy-btn btn btn-sm btn-dark">Books</a>
+                        <a href="/demo/books" class="sy-btn btn btn-sm btn-dark ms-2">Books</a>
                     </div>
                 <% } %>
                 

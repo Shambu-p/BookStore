@@ -14,26 +14,24 @@ import com.BookStore.Models.Book;
 import com.BookStore.Models.User;
 import com.BookStore.Repository.BookRepo;
 
-@WebServlet("/")
-public class HomeController extends HttpServlet {
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+@WebServlet("/books/published_books")
+public class PublishedBooks extends HttpServlet {
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		User user = com.BookStore.MiddleWare.Authetication.isAuthenticated(request, response, null);
 		if (user == null) {
 			return;
 		}
 
-		BookRepo repo;
 		try {
-
-			repo = new BookRepo();
-			ArrayList<Book> books = repo.getBooks("", "", "");
+            
+            BookRepo repo  = new BookRepo();
+			ArrayList<Book> books = repo.getByUser(user.Id);
 			
 			request.setAttribute("books", books);
 			request.setAttribute("user", user);
-			request.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/published_list.jsp").forward(request, response);
 
 		} catch (ClassNotFoundException | SQLException e) {
 			request.setAttribute("message", e.getMessage());
@@ -43,8 +41,7 @@ public class HomeController extends HttpServlet {
 
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 

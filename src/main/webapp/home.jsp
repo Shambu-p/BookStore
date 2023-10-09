@@ -24,31 +24,37 @@
         <div class="w-100 border-bottom">
             <div class="container d-flex p-1 justify-content-between">
                 <div class="navbar_left w-50 d-flex justify-content-start">
-                    <a href="/demo/user/profile" class="logged_in_user pe-2 boarder-right">
+                    <a href="/demo/user/profile"
+                        class="logged_in_user pe-2 boarder-right">
                         <% out.println(nuser.Name); %>
                     </a>
                     <a href="/demo/auth/logout" class="logout_action pe-2">Logout</a>
                 </div>
                 <% if(nuser.isAdminUser()) { %>
-                    <div class="navbar_right w-50 d-flex justify-content-end">
-                        <a href="/demo/home" class="sy-btn btn btn-sm btn-dark">Home</a>
-                        <a href="/demo/authors" class="sy-btn btn btn-sm btn-dark">Authors</a>
-                        <a href="/demo/books" class="sy-btn btn btn-sm btn-dark ms-2">Books</a>
-                        <a href="/demo/users" class="sy-btn btn btn-sm btn-dark ms-2">Books</a>
-                    </div>
+                <div class="navbar_right w-50 d-flex justify-content-end">
+                    <a href="/demo/home" class="sy-btn btn btn-sm btn-dark">Home</a>
+                    <a href="/demo/authors"
+                        class="sy-btn btn btn-sm btn-dark ms-2">Authors</a>
+                    <a href="/demo/books"
+                        class="sy-btn btn btn-sm btn-dark ms-2">Books</a>
+                    <a href="/demo/users"
+                        class="sy-btn btn btn-sm btn-dark ms-2">Users</a>
+                </div>
                 <% } else if(nuser.Role.equals("author")) { %>
-                    <div class="navbar_right w-50 d-flex justify-content-end">
-                        <a href="/demo/home" class="sy-btn btn btn-sm btn-dark">Home</a>
-                        <a href="/demo/books/publish" class="sy-btn btn btn-sm btn-dark">Publish Book</a>
-                        <a href="/demo/my_books" class="sy-btn btn btn-sm btn-dark ms-2">My Books</a>
-                    </div>
+                <div class="navbar_right w-50 d-flex justify-content-end">
+                    <a href="/demo/home" class="sy-btn btn btn-sm btn-dark">Home</a>
+                    <a href="/demo/books/publish"
+                        class="sy-btn btn btn-sm btn-dark ms-2">Publish Book</a>
+                    <a href="/demo/books/published_books" class="sy-btn btn btn-sm btn-dark ms-2">My Books</a>
+                </div>
                 <% } else if(nuser.Role.equals("user")) { %>
-                    <div class="navbar_right w-50 d-flex justify-content-end">
-                        <a href="/demo/home" class="sy-btn btn btn-sm btn-dark">Home</a>
-                        <a href="/demo/books" class="sy-btn btn btn-sm btn-dark">Books</a>
-                    </div>
+                <div class="navbar_right w-50 d-flex justify-content-end">
+                    <a href="/demo/home" class="sy-btn btn btn-sm btn-dark ms-2">Home</a>
+                    <a href="/demo/books" class="sy-btn btn btn-sm btn-dark">Books</a>
+                    <a href="/demo/my_books" class="sy-btn btn btn-sm btn-dark">Bought Books</a>
+                </div>
                 <% } %>
-                
+
             </div>
         </div>
         <div class="hero-section w-100">
@@ -92,13 +98,16 @@
                                 <span class="card-subtitle"><%= book.Author %></span>
                                 <div class="d-flex mb-3">
                                     <div class="w-50">
-                                        <span>50 Copies</span>
+                                        <span><%= book.Quantity %> Copies</span>
                                     </div>
                                     <div class="w-50">
-                                        <span>200.0ETB</span>
+                                        <span><%= book.Price %>ETB</span>
                                     </div>
                                 </div>
-                                <button class="btn btn-sm btn-dark w-100">Order Now</button>
+                                <% if(nuser.isNormalUser()) { %>
+                                    <a href="/demo/books/order?id=<%= book.Id %>" class="btn btn-sm btn-dark w-100">Order Now</a>
+                                <% } %>
+                                <!-- <button class="btn btn-sm btn-dark w-100">Order Now</button> -->
                             </div>
 
                         <% } %>
