@@ -1,6 +1,8 @@
 package com.BookStore.Repository;
 
 import java.sql.*;
+
+import com.BookStore.Exceptions.BookNotFoundException;
 import com.BookStore.Models.*;
 import java.util.*;
 
@@ -100,7 +102,7 @@ public class BookRepo {
 
 	}
 	
-	public Book getBook(int id) throws SQLException, Exception {
+	public Book getBook(int id) throws SQLException, BookNotFoundException {
 		
 		String query = "select * from booklist where id = ?";
 		PreparedStatement pst = this.Database.prepareStatement(query);
@@ -109,7 +111,7 @@ public class BookRepo {
 		ResultSet rs = pst.executeQuery();
 
 		if(!rs.next()) {
-			throw new Exception("Book not found!");
+			throw new BookNotFoundException();
 		}
 		
 		Book found_book = new Book();
@@ -121,6 +123,7 @@ public class BookRepo {
 		found_book.Quantity = rs.getInt("a_quantity");
 		found_book.UserId = rs.getInt("user_id");
 		found_book.Description = rs.getString("description");
+		found_book.Cover = rs.getString("cover");
 
 		return found_book;
 		

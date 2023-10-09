@@ -104,3 +104,8 @@ body {
 .book_image_container img {
     width: 100%;
 }
+
+.card_cover {
+    width: 200px;
+    position: relative;
+}
