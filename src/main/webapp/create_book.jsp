@@ -42,8 +42,9 @@
                     </div>
                 <% } else if(nuser.Role.equals("user")) { %>
                     <div class="navbar_right w-50 d-flex justify-content-end">
-                        <a href="/demo/home" class="sy-btn btn btn-sm btn-dark">Home</a>
-                        <a href="/demo/books" class="sy-btn btn btn-sm btn-dark ms-2">Books</a>
+                        <a href="/demo/home" class="sy-btn btn btn-sm btn-dark me-2">Home</a>
+                        <a href="/demo/books" class="sy-btn btn btn-sm btn-dark me-2">Books</a>
+                        <a href="/demo/books/my_books" class="sy-btn btn btn-sm btn-dark">Bought Books</a>
                     </div>
                 <% } %>
                 

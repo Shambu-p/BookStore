@@ -55,14 +55,10 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         class="sy-btn btn btn-sm btn-dark ms-2">My Books</a>
                 </div>
                 <% } else if(nuser.Role.equals("user")) { %>
-                <div
-                    class="navbar_right w-50 d-flex justify-content-end">
-                    <a href="/demo/home"
-                        class="sy-btn btn btn-sm btn-dark ms-2">Home</a>
-                    <a href="/demo/books"
-                        class="sy-btn btn btn-sm btn-dark">Books</a>
-                    <a href="/demo/my_books"
-                        class="sy-btn btn btn-sm btn-dark">Bought Books</a>
+                <div class="navbar_right w-50 d-flex justify-content-end">
+                    <a href="/demo/home" class="sy-btn btn btn-sm btn-dark me-2">Home</a>
+                    <a href="/demo/books" class="sy-btn btn btn-sm btn-dark me-2">Books</a>
+                    <a href="/demo/books/my_books" class="sy-btn btn btn-sm btn-dark">Bought Books</a>
                 </div>
                 <% } %>
 
@@ -100,7 +96,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
 
                             </div>
                             <div class="card-header">
-                                <a href="#" class="btn btn-link btn-sm">See Details</a>
+                                <a href="#" class="btn btn-link btn-sm">See Book Details</a>
                             </div>
                         </div>
 
