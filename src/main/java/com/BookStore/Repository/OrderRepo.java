@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.BookStore.Exceptions.BookNotAvailable;
 import com.BookStore.Models.Book;
 import com.BookStore.Models.Order;
 
@@ -17,8 +18,12 @@ public class OrderRepo {
 		this.Database = new Database().getConnection();
 	}
 
-    public Boolean newOrder(Order new_order) throws SQLException {
-		
+    public Boolean newOrder(Order new_order) throws SQLException, BookNotAvailable, ClassNotFoundException {
+
+        if(new_order.Book.Quantity < new_order.Quantity) {
+            throw new BookNotAvailable();
+        }
+
 		String query = "insert into orders (book_id, total_price, quantity, user_id) values (?,?,?,?)";
 		PreparedStatement pst = this.Database.prepareStatement(query);
 		pst.setInt(1, new_order.BookId);
@@ -26,7 +31,13 @@ public class OrderRepo {
 		pst.setInt(3, new_order.Quantity);
 		pst.setInt(4, new_order.UserId);
 
-		return pst.executeUpdate() > 0;
+		if(pst.executeUpdate() > 0){
+            BookRepo bk = new BookRepo();
+            new_order.Book.Quantity -= new_order.Quantity;
+            return bk.updateBook(new_order.Book);
+        }
+
+        return false;
 
 	}
 

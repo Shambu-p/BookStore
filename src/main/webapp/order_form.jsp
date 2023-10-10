@@ -8,8 +8,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Bought List</title>
-        <link rel="stylesheet"
-            href="/demo/assets?type=css&name=bootstrap5.3.min.css">
+        <link rel="stylesheet" href="/demo/assets?type=css&name=bootstrap5.3.min.css">
         <link rel="stylesheet" href="/demo/assets?type=css&name=fontawesome.css">
         <link rel="stylesheet" href="/demo/assets?type=css&name=brands.css">
         <link rel="stylesheet" href="/demo/assets?type=css&name=solid.css">
@@ -24,12 +23,10 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
             <div class="container d-flex p-1 justify-content-between">
                 <div
                     class="navbar_left w-50 d-flex justify-content-start">
-                    <a href="/demo/user/profile"
-                        class="logged_in_user pe-2 boarder-right">
+                    <a href="/demo/user/profile" class="logged_in_user pe-2 boarder-right">
                         <% out.println(nuser.Name); %>
                     </a>
-                    <a href="/demo/auth/logout"
-                        class="logout_action pe-2">Logout</a>
+                    <a href="/demo/auth/logout" class="logout_action pe-2">Logout</a>
                 </div>
                 <% if(nuser.isAdminUser()) { %>
                 <div
@@ -44,25 +41,16 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         class="sy-btn btn btn-sm btn-dark ms-2">Users</a>
                 </div>
                 <% } else if(nuser.Role.equals("author")) { %>
-                <div
-                    class="navbar_right w-50 d-flex justify-content-end">
-                    <a href="/demo/home"
-                        class="sy-btn btn btn-sm btn-dark">Home</a>
-                    <a href="/demo/books/publish"
-                        class="sy-btn btn btn-sm btn-dark ms-2">Publish
-                        Book</a>
-                    <a href="/demo/books/published_books"
-                        class="sy-btn btn btn-sm btn-dark ms-2">My Books</a>
+                <div class="navbar_right w-50 d-flex justify-content-end">
+                    <a href="/demo/home" class="sy-btn btn btn-sm btn-dark">Home</a>
+                    <a href="/demo/books/publish" class="sy-btn btn btn-sm btn-dark ms-2">Publish Book</a>
+                    <a href="/demo/books/published_books" class="sy-btn btn btn-sm btn-dark ms-2">My Books</a>
                 </div>
                 <% } else if(nuser.Role.equals("user")) { %>
-                <div
-                    class="navbar_right w-50 d-flex justify-content-end">
-                    <a href="/demo/home"
-                        class="sy-btn btn btn-sm btn-dark me-2">Home</a>
-                    <a href="/demo/books"
-                        class="sy-btn btn btn-sm btn-dark me-2">Books</a>
-                    <a href="/demo/my_books"
-                        class="sy-btn btn btn-sm btn-dark">Bought Books</a>
+                <div class="navbar_right w-50 d-flex justify-content-end">
+                    <a href="/demo/home" class="sy-btn btn btn-sm btn-dark me-2">Home</a>
+                    <a href="/demo/books" class="sy-btn btn btn-sm btn-dark me-2">Books</a>
+                    <a href="/demo/books/my_books" class="sy-btn btn btn-sm btn-dark">Bought Books</a>
                 </div>
                 <% } %>
 
@@ -97,7 +85,16 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
 
                     </div>
                 </div>
-                <form class="w-100" action="/demo/books/order">
+                <form class="w-100" action="/demo/books/order" method="post">
+
+                    <c:choose>
+                        <c:when test="${success_alert != null}">
+                            <div class="alert alert-success mb-3">${success_alert}</div>
+                        </c:when>
+                        <c:when test="${error_alert != null}">
+                            <div class="alert alert-danger mb-3">${error_alert}</div>
+                        </c:when>
+                    </c:choose>
 
                     <p class="mt-4 mb-3">
                         <strong>Order Information</strong> <br>
@@ -105,12 +102,15 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                     </p>
 
                     <!-- hidden inputs -->
-                    <input name="author_name" type="hidden" value="<%= nuser.Name %>" />
-                    <input name="user_id" value="<%= nuser.Id %>" type="hidden" />
+                    <input name="book_id" value="<%= book.Id %>" type="hidden" />
                     
                     <label for="book_quantity" class="mb-1">How many copies do you want?</label>
                     <div class="input-group mb-3">
-                        <input id="book_quantity" name="quantity" type="number" min="0" placeholder="Number of book copie" class="form-control">
+                        <% if(book.Quantity == 0) { %>
+                        <input id="book_quantity" name="quantity" type="number" min="0" placeholder="No copies are available" class="form-control" disabled />
+                        <% } else { %>
+                        <input id="book_quantity" name="quantity" type="number" min="0" placeholder="Number of book copie" class="form-control" />
+                        <% } %>
                     </div>
 
                     <button class="btn btn-dark" type="submit">Order Now</button>

@@ -128,5 +128,23 @@ public class BookRepo {
 		return found_book;
 		
 	}
+
+	public boolean updateBook(Book book) throws SQLException {
+		
+		PreparedStatement pst = this.Database.prepareStatement("update booklist "
+				+ "set Bname = ?, Author = ?, Bprice = ?, Btype = ?, a_quantity = ?, description = ?, cover = ?"
+				+ "where id = ?");
+		pst.setString(1, book.Name);
+		pst.setString(2, book.Author);
+		pst.setDouble(3, book.Price);
+		pst.setString(4, book.BookType);
+		pst.setInt(5, book.Quantity);
+		pst.setString(6, book.Description);
+		pst.setString(7, book.Cover);
+		pst.setInt(8, book.Id);
+		
+		return pst.executeUpdate() > 0;
+		
+	}
 	
 }
