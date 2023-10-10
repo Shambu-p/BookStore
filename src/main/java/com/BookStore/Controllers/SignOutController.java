@@ -29,22 +29,13 @@ public class SignOutController extends HttpServlet {
 			UserRepo repo = new UserRepo();
 			User user = repo.authenticatedUser(request.getCookies());
 
-			if(user != null){
+			if(user != null) {
 
 				Cookie ck = new Cookie("user", "");
 				ck.setMaxAge(0);
 				ck.setPath("/");
 				response.addCookie(ck);
-				
-				// Cookie[] cookies = request.getCookies();
-				// for (Cookie cookie : cookies) {
-				// 	if (cookie.getName().equals("user")) {
-				// 		cookie.setMaxAge(0);
 
-				// 		response.addCookie(cookie);
-				// 		break;
-				// 	}
-				// }
 			}
 
 			request.setAttribute("success_alert", "Signed out Successfully!");
