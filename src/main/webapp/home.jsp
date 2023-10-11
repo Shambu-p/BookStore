@@ -21,44 +21,9 @@
     %>
 
     <body>
-        <div class="w-100 border-bottom">
-            <div class="container d-flex p-1 justify-content-between">
-                <div class="navbar_left w-50 d-flex justify-content-start">
-                    <a href="/demo/user/profile"
-                        class="logged_in_user pe-2 boarder-right">
-                        <% out.println(nuser.Name); %>
-                    </a>
-                    <a href="/demo/auth/logout" class="logout_action pe-2">Logout</a>
-                </div>
-                <% if(nuser.isAdminUser()) { %>
-                <div class="navbar_right w-50 d-flex justify-content-end">
-                    <a href="/demo/home" class="sy-btn btn btn-sm btn-dark">Home</a>
-                    <a href="/demo/authors"
-                        class="sy-btn btn btn-sm btn-dark ms-2">Authors</a>
-                    <a href="/demo/books"
-                        class="sy-btn btn btn-sm btn-dark ms-2">Books</a>
-                    <a href="/demo/users"
-                        class="sy-btn btn btn-sm btn-dark ms-2">Users</a>
-                </div>
-                <% } else if(nuser.Role.equals("author")) { %>
-                <div class="navbar_right w-50 d-flex justify-content-end">
-                    <a href="/demo/home" class="sy-btn btn btn-sm btn-dark">Home</a>
-                    <a href="/demo/books/publish"
-                        class="sy-btn btn btn-sm btn-dark ms-2">Publish Book</a>
-                    <a href="/demo/books/published_books" class="sy-btn btn btn-sm btn-dark ms-2">My Books</a>
-                </div>
-                <% } else if(nuser.Role.equals("user")) { %>
-                <div class="navbar_right w-50 d-flex justify-content-end">
-                    <a href="/demo/home" class="sy-btn btn btn-sm btn-dark me-2">Home</a>
-                    <a href="/demo/books" class="sy-btn btn btn-sm btn-dark me-2">Books</a>
-                    <a href="/demo/books/my_books" class="sy-btn btn btn-sm btn-dark">Bought Books</a>
-                </div>
-                <% } %>
-
-            </div>
-        </div>
+        <jsp:include page="header.jsp" />
         <div class="hero-section w-100">
-            <img src="/demo/image_assets?type=png&name=mountain.png" alt="image">
+            <img src="/demo/image_assets?type=jpg&name=home_mountain.jpg" alt="image" />
             <div class="h-100 w-100 pt-4 pb-2">
                 <div class="w-100" style="position: relative;">
                     <div class="container d-flex justify-content-between">
