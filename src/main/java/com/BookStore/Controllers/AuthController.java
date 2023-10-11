@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.BookStore.Utils;
 import com.BookStore.Exceptions.BSNotAuthenticated;
 import com.BookStore.Exceptions.BSNotFound;
 import com.BookStore.Models.User;
@@ -50,7 +51,9 @@ public class AuthController extends HttpServlet {
             response.addCookie(ck);
 
             request.setAttribute("user", user);
-            request.getServletContext().getRequestDispatcher("/home").forward(request, response);
+            response.sendRedirect(Utils.getAddress(request, "/home"));
+            // response.setHeader("location", Utils.getAddress(request, "/home"));
+            // request.getServletContext().getRequestDispatcher("/home").forward(request, response);
 
         } catch (BSNotFound ex) {
             request.setAttribute("error_alert", ex.getMessage());

@@ -11,7 +11,8 @@ public class Utils {
         String server = request.getServerName();
         int port = request.getServerPort();
 
-        return (protocol.equals("HTTP/1.0") ? "http://" : "https://") + server + ((port == 80 || port == 443) ? "" : ":"+port) + "/" + Utils.projectName + path;
+        return "http://" + server + ((port == 80 || port == 443) ? "" : ":"+port) + "/" + Utils.projectName + path;
+        // return (protocol.equals("HTTP/1.0") ? "http://" : "https://") + server + ((port == 80 || port == 443) ? "" : ":"+port) + "/" + Utils.projectName + path;
 
     }
 }
