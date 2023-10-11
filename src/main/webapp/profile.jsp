@@ -21,19 +21,17 @@
 
         <jsp:include page="header.jsp" />
         <div class="w-100" style="height: 300px;">
-            <img src="/demo/image_assets?type=png&name=mountain.png" alt="image" style="height: 100%; width: 100%;" />
+            <img src="/demo/image_assets?type=webp&name=profile_mountain.webp" alt="image" style="height: 100%; width: 100%;" />
         </div>
 
         <div class="w-100">
             <div class="container d-flex">
                 <div style="width: 200px; position: relative;">
-                    <img 
-                        src="/demo/image_assets?type=jpg&name=placeholder.jpg" alt="image" 
-                        style="width: 200px; height: 200px; position: absolute; transform: translateY(-50%);" class="rounded-circle">
+                    <img src="/demo/image_assets?type=jpg&name=placeholder.jpg" alt="image" style="width: 200px; height: 200px; position: absolute; transform: translateY(-50%);" class="rounded-circle">
                 </div>
                 <div class="col p-3" style="position: relative;">
-                    <h5 class="card-title" style="font-size: 30px; font-weight: bold;">Kevin Smith</h5>
-                    <h6 class="card-subtitle mb-3" style="font-size: 20px;">role</h6>
+                    <h5 class="card-title" style="font-size: 30px; font-weight: bold;"><%= nuser.Name %></h5>
+                    <h6 class="card-subtitle mb-3" style="font-size: 20px;"><%= nuser.Role %></h6>
                     <span>Facebook</span>
                     <span>Instagram</span>
                     <span>Whatsapp</span>
@@ -43,18 +41,19 @@
 
         <div class="w-100 bg-light">
             <div class="container d-flex">
-                <div style="width: 200px; position: relative;" class="text-center p-1 pt-4">
-                    
+                <div style="width: 200px; position: relative;" class="text-center p-1 pt-4 pb-4">
+
                     <h5 class="card-title mb-3 mt-4">Phone</h5>
-                    <span class="card-sutitle mb-1">09876345</span>
-                    <span class="card-sutitle mb-1">09876345</span>
+                    <span class="card-sutitle mb-1"><%= nuser.Mobile %></span>
                     <h5 class="card-title mb-3 mt-4">Email</h5>
-                    <span class="card-sutitle mb-1">abnet@absoft.net</span>
+                    <span class="card-sutitle mb-1"><%= nuser.Email %></span>
 
                     <button class="btn btn-lg btn-primary mt-5 w-100">Chat</button>
+
                 </div>
-                <div class="col p-3">
-                    
+                <div class="col ps-4 pe-4 p-3">
+                    <h5 class="card-title mb-5">Books Ordered</h5>
+                    <jsp:include page="orders_list.jsp" />
                 </div>
             </div>
         </div>

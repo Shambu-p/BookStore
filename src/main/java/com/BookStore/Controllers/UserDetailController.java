@@ -5,14 +5,13 @@ import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.BookStore.Exceptions.BSNotAuthenticated;
 import com.BookStore.Exceptions.BSNotFound;
 import com.BookStore.Models.User;
+import com.BookStore.Repository.OrderRepo;
 import com.BookStore.Repository.UserRepo;
 
 @WebServlet("/user/profile")
@@ -30,9 +29,12 @@ public class UserDetailController extends HttpServlet {
             }
 
             String id = request.getParameter("id");
+            OrderRepo o_repo = new OrderRepo();
+
             if(id == null) {
                 request.setAttribute("user", user);
                 request.setAttribute("found_user", user);
+                request.setAttribute("orders", o_repo.orders(null, user.Id));
                 request.getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response);
                 return;
             }
@@ -47,6 +49,7 @@ public class UserDetailController extends HttpServlet {
             User found_user = repo.getUser(Integer.parseInt(id));
             request.setAttribute("user", user);
             request.setAttribute("found_user", found_user);
+            request.setAttribute("orders", o_repo.orders(null, found_user.Id));
             request.getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response);
 
         } catch (ClassNotFoundException | SQLException | BSNotFound ex) {
