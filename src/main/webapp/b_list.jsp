@@ -22,8 +22,7 @@ ArrayList<Book> books = (ArrayList<Book>) request.getAttribute("books");
                             src="/demo/image_assets?type=png&name=book_placeholder.png"
                             alt="image" />
                         <% } else { %>
-                        <img src="<% out.println("/demo/image_assets?type=cover&name="
-                            + book.Cover); %>" alt="image" />
+                        <img src="<% out.println("/demo/image_assets?type=cover&name=" + book.Cover); %>" alt="image" />
                         <% } %>
                     </div>
                     <h5 class="card-title"><%= book.Name %></h5>
