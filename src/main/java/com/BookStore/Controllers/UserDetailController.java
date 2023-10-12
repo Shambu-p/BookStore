@@ -50,7 +50,7 @@ public class UserDetailController extends HttpServlet {
             request.setAttribute("user", user);
             request.setAttribute("found_user", found_user);
             request.setAttribute("orders", o_repo.orders(null, found_user.Id));
-            request.getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response);
+            request.getServletContext().getRequestDispatcher("/user_detail.jsp").forward(request, response);
 
         } catch (ClassNotFoundException | SQLException | BSNotFound ex) {
             request.setAttribute("message", ex.getMessage());
