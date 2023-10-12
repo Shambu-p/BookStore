@@ -93,15 +93,16 @@ public class UserRepo {
 		ResultSet rs = pst.executeQuery();
 		
 		while(rs.next()) {
-			
+
 			User found_user = new User();			
+			found_user.Id = rs.getInt("id");
 			found_user.Name = rs.getString("uname");
-			found_user.Email = rs.getString("email");
+			found_user.Email = rs.getString("uemail");
 			found_user.Password = rs.getString("upwd");
 			found_user.Mobile= rs.getString("umobile");
 			found_user.Role = rs.getString("role");
 			users.add(found_user);
-			
+	
 		}
 		
 		return users;
