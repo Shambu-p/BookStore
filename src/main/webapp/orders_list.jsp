@@ -34,7 +34,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
 
             </div>
             <div class="card-header">
-                <a href="#" class="btn btn-link btn-sm">See Book Details</a>
+                <a href="/demo/books/detail?id=<%= order.Book.Id %>" class="btn btn-link btn-sm">See Book Details</a>
             </div>
         </div>
 

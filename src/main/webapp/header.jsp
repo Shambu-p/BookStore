@@ -19,8 +19,6 @@
         <% if(nuser.isAdminUser()) { %>
         <div class="navbar_right w-50 d-flex justify-content-end">
             <a href="/demo/home" class="sy-btn btn btn-sm btn-dark">Home</a>
-            <a href="/demo/authors"
-                class="sy-btn btn btn-sm btn-dark ms-2">Authors</a>
             <a href="/demo/books"
                 class="sy-btn btn btn-sm btn-dark ms-2">Books</a>
             <a href="/demo/users"

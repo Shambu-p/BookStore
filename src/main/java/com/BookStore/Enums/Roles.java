@@ -8,10 +8,9 @@ public enum Roles {
     User,
     Author;
 
-    private HashMap<String, String> all = new HashMap<String, String>();
-
-    public String getRole(String role){
+    public static String getRole(String role){
         
+        HashMap<String, String> all = new HashMap<String, String>();
         all.put(Roles.Administrator.toString(), "Application Administrator!");
         all.put(Roles.Author.toString(), "Books Author!");
         all.put(Roles.User.toString(), "Application Customer!");
