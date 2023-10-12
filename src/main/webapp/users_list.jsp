@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false" %>
+<%@ page import="com.BookStore.Models.*, java.util.ArrayList, com.BookStore.Enums.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,14 +14,18 @@
         <link rel="stylesheet" href="/demo/assets?type=css&name=solid.css">
         <link rel="stylesheet" href="/demo/assets?type=css&name=my_style.css">
     </head>
+<% 
+    User nuser = (User) request.getAttribute("user");
+    ArrayList<User> users = (ArrayList<User>) request.getAttribute("all_users");
+%>
     <body>
+        <jsp:include page="header.jsp" />
         <div
             class="bg-light d-flex justify-content-between mb-4 ps-4 pe-4 pt-2 pb-2 border-bottom">
-            <h5 class="card-title">Form Title</h5>
+            <h5 class="card-title">Users List</h5>
             <div class="button-group">
                 <button class="btn btn-sm btn-outline-primary">Create Author</button>
                 <button class="btn btn-sm btn-outline-danger">Delete</button>
-                <button class="btn btn-sm btn-outline-success">Save</button>
             </div>
         </div>
 
@@ -26,29 +33,26 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Role</th>
                 </tr>
             </thead>
             <tbody>
+                <% for(User user : users) { %>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row"><%= user.Id %></th>
+                    <td><%= user.Name %></td>
+                    <td><%= user.Email %></td>
+                    <td><%= user.Mobile %></td>
+                    <!-- <td><%-- Roles.getRole(user.Role) --%></td> -->
+                    <td><%= user.Role %></td>
+                    <td>
+                        <a href="/demo/user/profile?id=<%= user.Id %>" class="btn btn-sm btn-link">Detail</a>
+                    </td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                <% } %>
             </tbody>
 
         </table>
