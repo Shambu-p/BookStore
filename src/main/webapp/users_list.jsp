@@ -24,12 +24,21 @@
             class="bg-light d-flex justify-content-between mb-4 ps-4 pe-4 pt-2 pb-2 border-bottom">
             <h5 class="card-title">Users List</h5>
             <div class="button-group">
-                <button class="btn btn-sm btn-outline-primary">Create Author</button>
+                <a href="/demo/user/profile?id=-1" class="btn btn-sm btn-outline-primary">Create User</a>
                 <button class="btn btn-sm btn-outline-danger">Delete</button>
             </div>
         </div>
 
-        <table class="table table-striped">
+        <c:choose>
+            <c:when test="${success_alert != null}">
+                <div class="alert alert-success mb-3">${success_alert}</div>
+            </c:when>
+            <c:when test="${error_alert != null}">
+                <div class="alert alert-danger mb-3">${error_alert}</div>
+            </c:when>
+        </c:choose>
+
+        <table class="table table-striped mt-3">
             <thead>
                 <tr>
                     <th scope="col">#</th>
