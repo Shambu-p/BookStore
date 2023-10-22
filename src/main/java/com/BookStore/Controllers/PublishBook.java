@@ -42,7 +42,7 @@ public class PublishBook extends HttpServlet {
         if (user == null) {
             return;
         }
-
+ 
         try {
 
             Book new_book = new Book();
@@ -62,7 +62,7 @@ public class PublishBook extends HttpServlet {
             // String[] name_splite = filePart.getSubmittedFileName().split(".");
             new_book.Cover = "bk_" + new_book.Name.trim();
             // Create a path to the save location.
-            String home_address = "C:\\Projects\\BookStore";
+            String home_address = "D:\\book_store\\BookStore\\";
             // String home_address = "/home/abnet/Documents/Projects/BookStore/demo/";
             // Path savePath = Paths.get(home_address + "/src/main/resources/book_covers", new_book.Cover);
             Path savePath = Paths.get(home_address + "\\src\\main\\resources\\book_covers", new_book.Cover);
@@ -82,6 +82,7 @@ public class PublishBook extends HttpServlet {
             request.setAttribute("message", ex.getMessage());
             request.getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
         }
+        
 
     }
 }
