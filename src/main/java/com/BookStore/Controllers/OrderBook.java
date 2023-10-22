@@ -63,10 +63,11 @@ public class OrderBook extends HttpServlet {
         ArrayList<String> roles = new ArrayList<String>();
         roles.add("user");
         User authUser = com.BookStore.MiddleWare.Authetication.isAuthenticated(request, response, roles);
-
+        
+        Order order = new Order();
         try {
 
-            Order order = new Order();
+           
             BookRepo book_repo = new BookRepo();
             OrderRepo order_repo = new OrderRepo();
     
@@ -87,8 +88,11 @@ public class OrderBook extends HttpServlet {
             request.getServletContext().getRequestDispatcher("/order_form.jsp").forward(request, response);
 
         } catch (BookNotAvailable | BookNotFoundException ex) {
+            request.setAttribute("book", order.Book);
+            request.setAttribute("user", authUser);
             request.setAttribute("error_alert", ex.getMessage());
             request.getServletContext().getRequestDispatcher("/order_form.jsp").forward(request, response);
+            
         } catch (ClassNotFoundException | SQLException ex) {
             request.setAttribute("message", ex.getMessage());
             request.getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);

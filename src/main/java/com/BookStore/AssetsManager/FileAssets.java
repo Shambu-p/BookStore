@@ -12,7 +12,7 @@ public class FileAssets extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // int BUFF_SIZE = 1024;
         // String home_address = "/home/abnet/Documents/Projects/BookStore/demo/";
-        String home_address = "C:\\Projects\\BookStore\\";
+        String home_address = "D:\\book_store\\BookStore\\";
         // byte[] buffer = new byte[BUFF_SIZE];
         String asset_type = request.getParameter("type");
         String asset_name = request.getParameter("name");
