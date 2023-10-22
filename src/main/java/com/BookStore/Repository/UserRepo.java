@@ -60,11 +60,12 @@ public class UserRepo {
 	public boolean updateUser(User user) throws SQLException {
 		
 		PreparedStatement pst = this.Database.prepareStatement("update Users "
-				+ "set uname = ?, uemail = ?, umobile = ?"
+				+ "set uname = ?, uemail = ?, umobile = ?, role = ?"
 				+ "where id = ?");
 		pst.setString(1, user.Name);
-		pst.setString(3, user.Email);
-		pst.setString(4, user.Mobile);
+		pst.setString(2, user.Email);
+		pst.setString(3, user.Mobile);
+		pst.setString(4, user.Role);
 		pst.setInt(5, user.Id);
 		
 		return pst.executeUpdate() > 0;

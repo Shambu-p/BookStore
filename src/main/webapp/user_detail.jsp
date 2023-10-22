@@ -20,18 +20,37 @@
 %>
 <body>
     <jsp:include page="header.jsp" />
-    <form action="/demo/users/update" method="post" class="w-100">
+    <form action="/demo/user/profile" method="post" class="w-100">
 
         <div class="bg-light d-flex justify-content-between mb-4 ps-4 pe-4 pt-2 pb-2 border-bottom">
             <h5 class="card-title">User Form</h5>
             <div class="button-group">
-                <button class="btn btn-sm btn-outline-primary" type="submit">Update</button>
-                <button class="btn btn-sm btn-outline-danger" type="button">Delete</button>
+                <% if(user != null) { %>
+                    <button class="btn btn-sm btn-outline-primary" type="submit">Update</button>
+                    <a href="/demo/user/profile?delete=<%= user.Id %>" class="btn btn-sm btn-outline-danger" type="button">Delete</a>
+                    <a href="/demo/user/profile?duplicate=<%= user.Id %>" class="btn btn-sm btn-outline-success" type="button">Duplicate</a>
+                <% } else if(user == null) { %>
+                    <button class="btn btn-sm btn-outline-primary" type="submit">Create</button>
+                <% } %>
             </div>
         </div>
 
         <div class="container">
-            <div class="d-flex mb-3">
+
+            <c:choose>
+                <c:when test="${success_alert != null}">
+                    <div class="alert alert-success mb-3">${success_alert}</div>
+                </c:when>
+                <c:when test="${error_alert != null}">
+                    <div class="alert alert-danger mb-3">${error_alert}</div>
+                </c:when>
+            </c:choose>
+
+            <% if(user != null) { %>
+            <input type="hidden" name="_method" value="put" />
+            <% } %>
+
+            <div class="row mb-3">
 
                 <div class="col pe-3">
                     <label for="user_id" class="mb-1">User Id</label>
@@ -64,12 +83,33 @@
                     </div>
                 </div>
 
+                <% if(user == null) { %>
+                <div class="col-12">
+
+                    <label for="signup_password" class="mb-1">Create Password</label>
+                    <div class="input-group mb-3">
+                        <input id="signup_password" type="password" name="n_password" placeholder="Enter Password" class="form-control">
+                    </div>
+
+                    <label for="signup_cpassword" class="mb-1">Confirm Password</label>
+                    <div class="input-group mb-3">
+                        <input id="signup_cpassword" type="password" name="c_password" placeholder="Enter Password" class="form-control">
+                    </div>
+
+                </div>
+                <% } %>
+
             </div>
 
             <div class="w-100 mb-3">
                 <div class="button-group">
-                    <button class="btn btn-sm btn-outline-primary" type="submit">Update</button>
-                    <button class="btn btn-sm btn-outline-danger" type="button">Delete</button>
+                    <% if(user != null) { %>
+                        <button class="btn btn-sm btn-outline-primary" type="submit">Update</button>
+                        <a href="/demo/user/profile?delete=<%= user.Id %>" class="btn btn-sm btn-outline-danger" type="button">Delete</a>
+                        <a href="/demo/user/profile?duplicate=<%= user.Id %>" class="btn btn-sm btn-outline-success" type="button">Duplicate</a>
+                    <% } else if(user == null) { %>
+                        <button class="btn btn-sm btn-outline-primary" type="submit">Create</button>
+                    <% } %>
                 </div>
             </div>
 
